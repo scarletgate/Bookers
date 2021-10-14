@@ -27,19 +27,22 @@
       <% if @book.errors.any? %>
         <h2><%= @book.errors.count %> errors prohibited this book from being saved:</h2>
         <ul>
-          <li><%= @book.errors.full_messages_for(:title) %></li>
-          <li><%= @book.errors.full_messages_for(:body) %></li>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
         </ul>
       <% end %>
     </div>
     <div class="field">
-      <div><%= f.text_field :title %></div>
+      <%= f.label :title, "Title" %>
+      <%= f.text_field :title %>
     </div>
     <div class="field">
-      <div><%= f.text_area :body %></div>
+      <%= f.label :body, "Body" %>
+      <%= f.text_area :body %>
     </div>
     <div class="actions">
-    <%= f.submit 'Create Book' %>
+      <%= f.submit 'Create Book' %>
     </div>
   <% end %>
 </body>
